@@ -39,7 +39,8 @@ class MarsRover
   @y_lim
 
   def initialize()
-
+    @x_lim = 5
+    @y_lim = 5
   end
 
   def get_rover_data

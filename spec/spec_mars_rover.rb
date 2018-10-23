@@ -45,4 +45,23 @@ describe "Mars Rover Functions" do
     expect(rover.change_direction("E", "L")).to eq("N")
   end
 
+  it 'Checks if Move Forward is working properly' do
+    data = rover.move_forward("N", 0, 0)
+    expect(data[0]).to eq(0)
+    expect(data[1]).to eq(1)
+
+    data = rover.move_forward("S", 0, 0)
+    expect(data[0]).to eq(0)
+    expect(data[1]).to eq(0)
+
+    data = rover.move_forward("E", 0, 0)
+    expect(data[0]).to eq(1)
+    expect(data[1]).to eq(0)
+
+    data = rover.move_forward("W", 0, 0)
+    expect(data[0]).to eq(0)
+    expect(data[1]).to eq(0)
+
+  end
+
 end
