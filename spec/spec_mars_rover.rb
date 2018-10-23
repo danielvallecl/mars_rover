@@ -28,28 +28,21 @@ describe "Mars Rover Functions" do
   it 'Checks if the direction commands are valid' do
     i = 0
     while i < input_data[2][0].length do
-      expect(input_data[2][0][i]).to be_an_instance_of(String)
+      letter = input_data[2][0][i]
+      expect(letter == "L" || letter == "R" || letter == "M").to eq(true)
       i += 1
     end
   end
 
-
-
-
-  # it 'A Missing Parameter' do
-  #   rover = Mars.new
-  # end
-  #
-  # it 'A position over the limits of the plateau' do
-  #   rover = Mars.new
-  # end
-
-  # it 'Length of String - String Check' do
-  #   emptytext = StrFunction.new
-  #   str = ""
-  #   result = emptytext.len(str)
-  #   expect(result).to eq(0)
-  # end
-
+  it 'Checks if changing direction is working properly' do
+    expect(rover.change_direction("N", "R")).to eq("E")
+    expect(rover.change_direction("N", "L")).to eq("W")
+    expect(rover.change_direction("W", "R")).to eq("N")
+    expect(rover.change_direction("W", "L")).to eq("S")
+    expect(rover.change_direction("S", "R")).to eq("W")
+    expect(rover.change_direction("S", "L")).to eq("E")
+    expect(rover.change_direction("E", "R")).to eq("S")
+    expect(rover.change_direction("E", "L")).to eq("N")
+  end
 
 end
