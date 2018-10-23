@@ -1,67 +1,75 @@
 =begin
-* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-* Request from Yroo
+* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+* Request from Yroo - Rover squad moves on Mars Plateau
 *
 * Code written by: Daniel Valle
 * Date: 2018-10-22
 * Location: Toronto - Canada
 * Version: MarsRover_v1.0
 * Development environment: Mac Osx - Ruby 2.5
+* Test environment: TDD - Rspec
+* Version control - Github - repository
+*
+*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*
+* Directory structure:
+*          mars_rover
+*              mars_rover.rb         - Main
+*              mars_input.txt        - input data sample
+*              class_mars.rb         - class definition
+*              README.md             - Application information
+*          spec
+*            spec_helper.rb          - Rspec helper
+*            spec_mars_rover.rb      - Application tests
 *
 *
-*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-* Class MarsRover - All functions to process rover commands
+* How to operate - Application:
 *
-* Available Methods:
+* From the cli - > ruby mars_rover.rb 'ARG'
+*                'ARG' = filename with rovers data
 *
-* get_rover_data: parameters: none
+* Ex: > ruby mars_rover.rb 'mars_input.txt'
+*       ('mars_input.txt' is present in the marsRover Github repository )
 *
-*                 Returns all data read from the input file
+* How to operate - Tests:
 *
-* change_direction: parameters: current_direction and command
-*
-*                 Returns new direction based in the command input
-*
-* move_forward: parameters: current_direction, x_pos and y_pos)
-*
-*                 Returns new position based in the command input
-*
-* data_input_validation: parameters: input_array read from input file
-*
-*                 Returns false for a failing Validation
-*                         array with input file data if pass validation
-*
-* def read_input_file: parameters: filename that comes from cli argument
-*
-                  Returns an array with input file data
+* From the cli - > rspec rspec spec/spec_mars_rover.rb
 *
 *
+*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
-* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+* Required information - Class MarsRover - All functions to process rover commands
+* Filename - Name of the input file with rover's commands data
+* Rovers accept commands to move and rotate to previously validated position.
+* Rovers accept moves that will end out of the Plateau's boundaries but rovers will stop at the edge of the limits.
+*
+* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 =end
-
 
 # Aplication initialization: Instantiates the MarsRover class, reads the input file and
 # validates the input data.
-# Exit the initialization if file not found and if input data format out of spec.
+# Exit the initialization, returning false, if file not found and if input data format out of spec.
+# requires class MarsRover and its methods
 require_relative 'class_mars.rb'
+
+X_POS = 0
+Y_POS = 1
+DIRECTION = 2
 
 mars = MarsRover.new
 filename = ARGV[0]
 input_data = mars.read_input_file(filename)
-if input_data != false
-  result = mars.data_input_validation(input_data)
-else
-  puts "File does not exist!"
+if !mars.read_input_file(filename)
+  return false
 end
-if !result
+if !mars.data_input_validation(input_data)
   return false
 end
 
-output = mars.run_mars(mars)
+# View rovers final position after executing all received commands.
+rovers_final_position = mars.run_rover()
 rover = 0
-
-while rover < output.size do
- puts "#{output[rover][0]} #{output[rover][1]} #{output[rover][2]}"
- rover += 1
+while rover < rovers_final_position.size
+  puts "#{rovers_final_position[rover][X_POS]} #{rovers_final_position[rover][Y_POS]} #{rovers_final_position[rover][DIRECTION]}"
+  rover += 1
 end
