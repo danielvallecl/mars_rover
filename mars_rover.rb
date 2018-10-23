@@ -31,6 +31,8 @@
 * Ex: > ruby mars_rover.rb 'mars_input.txt'
 *       ('mars_input.txt' is present in the marsRover Github repository )
 *
+* 'test.txt' file was used as one of the tests to check the boundaries of the plateau
+*
 * How to operate - Tests:
 *
 * From the cli - > rspec spec/spec_mars_rover.rb
