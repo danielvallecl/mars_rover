@@ -3,7 +3,7 @@
 
 <h2>To run the app from the command line navigate to the directory and type:</h2>
 
-`ruby mars_rover.rb "mars_input.txt"`
+`ruby mars_hover.rb "mars_input.txt"`
 
 <h2>This will run the app and load an external test file with directions.
 
