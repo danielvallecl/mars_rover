@@ -98,7 +98,7 @@ describe "Mars Rover Functions" do
   end
 
   it 'Checks if Move Forward is working properly and within the boundaries' do
-    validation = [true,true]    # Validation ok for all rovers data - for tests purposes
+    validation = [true,true]    # Validation ok for all rover's data - for tests purposes
     result = rover.run_rover(validation)
 
     expect(result[0][0]).to eq(1)

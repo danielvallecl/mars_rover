@@ -3,7 +3,7 @@
 * Request from Yroo - Mars rover
 *
 * Code written by: Daniel Valle
-* Date: 2018-10-22
+* Date: 2018-10-23
 * Location: Toronto - Canada
 * Version: MarsRover_v1.0
 * Development environment: Mac Osx - Ruby 2.5
@@ -30,7 +30,7 @@
 * data_input_validation: parameters: input_array read from input file
 *
 *                 Returns false for a failing Validation
-*                         array with input file data if pass validation
+*                         array with input file data if validation passes
 *
 * def read_input_file: parameters: filename that comes from cli argument
 *
@@ -56,9 +56,6 @@ class MarsRover
     @valid_rovers = []
     @number_of_rovers = 0
     @rovers_data = []
-    # Created for Rspec tests to initialize the run_rover method
-    @test_hovers_data = [['5 5'],['1 2 N'], ['LMLMLMLMM'], ['3 3 E'], ['MMRMMRMRRM']]
-
 
   def initialize()
     self.x_pos = 0
@@ -74,6 +71,7 @@ class MarsRover
     if self.rovers_data != nil
       return self.rovers_data
     else
+      self.test_rovers_data = [[1,2,'N','LMLMLMLMM\n'],[3,3,'E','MMRMMRMRRM\n']]
       return self.test_rovers_data
     end
   end
@@ -212,7 +210,11 @@ class MarsRover
   # Run all rovers commands received from the input file after appropriate validation of the data.
   # run_rover utilizes array valid_rovers to process only commands pre-validated - true - process, false - skip
   # returns an array - output_buffer with x position, y position and direction of all rovers.
-  def run_rover()
+  def run_rover(validation = nil)
+    # Validation argument sent by Rspec for testing the method.
+    if validation != nil
+      self.valid_rovers = validation
+    end
     rover_data = self.get_rover_data
     output_buffer = []
     rover = 0
@@ -237,9 +239,9 @@ class MarsRover
           end
           process_cmd += 1
         end
-        if new_position != nil && new_position != ''
+        # if new_position != nil && new_position != ''
           new_position = [rover_data[rover][0],rover_data[rover][1]]
-        end
+        # end
         if new_direction == ''
           new_direction = direction
         end
@@ -252,7 +254,7 @@ class MarsRover
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  # Reads input data from a file - filename specified in the cli through ann argument
+  # Reads input data from a file - filename specified in the cli through an argument
   def read_input_file(filename)
     begin
       input_array = []

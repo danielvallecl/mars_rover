@@ -33,7 +33,7 @@
 *
 * How to operate - Tests:
 *
-* From the cli - > rspec rspec spec/spec_mars_rover.rb
+* From the cli - > rspec spec/spec_mars_rover.rb
 *
 *
 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
