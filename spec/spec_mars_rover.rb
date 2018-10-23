@@ -1,3 +1,17 @@
+=begin
+
+****Structure of the mars_input.txt file****
+
+5 5
+1 2 N
+LMLMLMLMM
+3 3 E
+MMRMMRMRRM
+
+=end
+
+
+
 
 require "spec_helper"
 require_relative "../mars_rover"
@@ -45,7 +59,7 @@ describe "Mars Rover Functions" do
     expect(rover.change_direction("E", "L")).to eq("N")
   end
 
-  it 'Checks if Move Forward is working properly' do
+  it 'Checks if Move Forward is working properly and within the boundaries' do
     data = rover.move_forward("N", 0, 0)
     expect(data[0]).to eq(0)
     expect(data[1]).to eq(1)
@@ -62,6 +76,15 @@ describe "Mars Rover Functions" do
     expect(data[0]).to eq(0)
     expect(data[1]).to eq(0)
 
+    data = rover.move_forward("N", 5, 5)
+    expect(data[0]).to eq(5)
+    expect(data[1]).to eq(5)
+
+    data = rover.move_forward("E", 5, 5)
+    expect(data[0]).to eq(5)
+    expect(data[1]).to eq(5)
   end
+
+  
 
 end
