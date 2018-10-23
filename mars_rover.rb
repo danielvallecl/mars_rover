@@ -55,7 +55,6 @@ else
   puts "File does not exist!"
 end
 if !result
-  puts "Input file data out of spec!"
   return false
 end
 

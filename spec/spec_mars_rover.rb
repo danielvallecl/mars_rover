@@ -85,6 +85,10 @@ describe "Mars Rover Functions" do
     expect(data[1]).to eq(5)
   end
 
-  
+  it 'Checks if Move Forward is working properly and within the boundaries' do
+    data = system("ruby mars_rover.rb 'mars_input.txt'")
+    expect(data).to eq(true)
+  end
+
 
 end
