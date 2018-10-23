@@ -165,7 +165,7 @@ class MarsRover
   end
 
 
-  # Reads input data from a file specified in the cli 
+  # Reads input data from a file specified in the cli
   def read_input_file(filename)
     begin
       input_array = []

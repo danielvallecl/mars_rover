@@ -1,7 +1,7 @@
 
 require "spec_helper"
-require_relative "../mars_rover.rb"
-require relative "../class_mars.rb"
+require "mars_rover"
+require "class_mars"
 
 describe MarsRover do
 
