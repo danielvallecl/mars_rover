@@ -10,9 +10,6 @@ MMRMMRMRRM
 
 =end
 
-
-
-
 require "spec_helper"
 require_relative "../mars_rover"
 require_relative "../class_mars"
@@ -86,7 +83,9 @@ describe "Mars Rover Functions" do
   end
 
   it 'Checks if Move Forward is working properly and within the boundaries' do
-    data = rover.run_mars(rover)
+    data = ['5 5\n', '1 2 N\n', 'LMLMLMLMM\n', '3 3 E\n', 'MMRMMRMRRM\n']
+    result = rover.run_mars(rover, data)
+    expect(result[0][0]).to eq('5')
   end
 
 end

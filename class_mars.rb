@@ -39,7 +39,8 @@ class MarsRover
   @y_lim
 
   def initialize()
-
+    @x_lim = 5
+    @y_lim = 5
   end
 
   def get_rover_data
@@ -181,8 +182,13 @@ class MarsRover
   end
 
 
-  def run_mars(mars)
-    rover_data = mars.get_rover_data
+  def run_mars(mars, input_data = nil)
+    output_buffer = []
+    if input_data == nil
+      rover_data = mars.get_rover_data
+    else
+      rover_data = input_data
+    end
     rover = 0
     number_of_rovers = rover_data.size
     while rover <  number_of_rovers
@@ -205,14 +211,13 @@ class MarsRover
         process_cmd += 1
       end
       if new_position != nil && new_position != ''
-        puts "#{new_position[0]} #{new_position[1]} #{new_direction}"
+        output_buffer.push([new_position[0], new_position[1], new_direction])
       else
-        puts "#{rover_data[rover][0]} #{rover_data[rover][1]} #{new_direction}"
+        output_buffer.push([rover_data[rover][0], rover_data[rover][1], new_direction])
       end
       rover += 1
     end
+    return output_buffer
   end
-
-
 
 end

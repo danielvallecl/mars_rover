@@ -55,8 +55,13 @@ else
   puts "File does not exist!"
 end
 if !result
-  puts "Input file data out of spec!"
   return false
 end
 
-mars.run_mars(mars)
+output = mars.run_mars(mars)
+rover = 0
+
+while rover < output.size do
+ puts "#{output[rover][0]} #{output[rover][1]} #{output[rover][2]}"
+ rover += 1
+end
