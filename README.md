@@ -11,4 +11,4 @@
 
 `rspec spec/spec_mars_rover.rb`
 
-<h5>Developed by Daniel Valle in Toronto on October 22nd, 2018.</h5>
+<h5 align="center">Developed by Daniel Valle in Toronto on October 23rd, 2018.</h5>
