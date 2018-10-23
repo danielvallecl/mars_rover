@@ -55,38 +55,8 @@ else
   puts "File does not exist!"
 end
 if !result
+  puts "Input file data out of spec!"
   return false
 end
 
-# Gets all the data relative to the rovers. That is no limit to the size of the rovers squad.
-# iterates over rover's data.
-# If there is no moves "M" commands to the rover, we will present initial rover's location
-rover_data = mars.get_rover_data
-rover = 0
-number_of_rovers = rover_data.size
-while rover <  number_of_rovers
-    direction = ''
-    new_position = ''
-    process_cmd = 0
-    while process_cmd < rover_data[rover][3].length - 1
-      data = rover_data[rover][3][process_cmd]
-      case data
-        when "L", "R"
-          direction = rover_data[rover][2]
-          new_direction = mars.change_direction(direction,data)
-          rover_data[rover][2] = new_direction
-        when "M"
-          direction = rover_data[rover][2]
-          new_position = mars.move_forward(direction, rover_data[rover][0], rover_data[rover][1])
-          rover_data[rover][0] = new_position[0]
-          rover_data[rover][1] = new_position[1]
-      end
-      process_cmd += 1
-    end
-    if new_position != nil && new_position != ''
-      puts "#{new_position[0]} #{new_position[1]} #{new_direction}"
-    else
-      puts "#{rover_data[rover][0]} #{rover_data[rover][1]} #{new_direction}"
-    end
-    rover += 1
-end
+mars.run_mars(mars)
